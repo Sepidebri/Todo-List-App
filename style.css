@@ -26,6 +26,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
     background-color: var(--dColor);
     color:var(--lColor);
@@ -33,6 +34,7 @@ body{
 header{
     display: flex;
     align-items: center;
+    margin-bottom: 0.8em;
 }
 .header-title{
     padding-right: 0.8em;
@@ -40,7 +42,31 @@ header{
 .header-title h1{
     font-family: 'Nunito-Black', Arial, Helvetica, sans-serif;
 }
-i{
+header i{
     color: var(--pColor);
     font-size: 2rem;
+}
+form{
+    display: flex;
+    align-items: center;
+    background-color: var(--bColor);
+    border-radius: 4em;
+    padding-left:1em;
+}
+form i{
+    font-size: 1.5rem;
+    color: var(--gColor);
+}
+form input{
+    width: 100%;
+    font-size: 1.3rem;
+    background-color: transparent;
+    padding: .5em;
+    color: var(--lColor);
+}
+form .addItemButton{
+    background-color: var(--pColor);
+    padding: .5em;
+    border-radius: 50%;
+    cursor: pointer;
 }
