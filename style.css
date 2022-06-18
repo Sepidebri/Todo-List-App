@@ -35,34 +35,79 @@ header{
     display: flex;
     align-items: center;
     margin-bottom: 0.8em;
+    justify-content: space-between;
 }
 .header-title{
-    padding-right: 0.8em;
+    padding-right: 2em;
 }
 .header-title h1{
     font-family: 'Nunito-Black', Arial, Helvetica, sans-serif;
 }
 header i{
     color: var(--pColor);
-    font-size: 2rem;
+    font-size: 4rem;
+}
+main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+main .container-type{
+    padding-left: 2em;
+    display: none;
+}
+main .container-type i {
+    font-size: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius:50%;
+    cursor: pointer;
+    text-align: center;
+    line-height: 2.5rem;
+}
+main .container-type .briefcase{
+color: #a8a8b850;
+background-color: #070799 ;
+}
+main .container-type .praying{
+    color: #9aa498;
+    background-color: #206115;
+}
+main .container-type .utensils{
+    color: #ece4de50;
+    background-color: #d85d0b;
+}
+main .container-type .dumbbell{
+    color: #d0c8d1;
+    background-color: #af0bd8;
 }
 form{
     display: flex;
+    justify-content: center;
     align-items: center;
-    background-color: var(--bColor);
-    border-radius: 4em;
-    padding-left:1em;
+    
 }
 form i{
     font-size: 1.5rem;
     color: var(--gColor);
+    
 }
-form input{
-    width: 100%;
+form .container-input{
     font-size: 1.3rem;
-    background-color: transparent;
-    padding: .5em;
+    background-color: var(--bColor);
     color: var(--lColor);
+    border-radius: 4em;
+    padding-left:1em;
+    width: 30em;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+form .container-input input{
+    width: 80%;
+    background-color: var(--bColor);
+    font-size: 0.9em;
+    font-weight: 600;
 }
 form .addItemButton{
     background-color: var(--pColor);
