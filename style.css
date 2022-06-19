@@ -5,6 +5,8 @@
     box-sizing: border-box;
     outline: none;
     border: none;
+    text-decoration: none;
+    list-style: none;
 }
 @font-face {
     font-family: 'Nunito-Black';
@@ -51,41 +53,14 @@ main{
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-main .container-type{
-    padding-left: 2em;
-    display: none;
-}
-main .container-type i {
-    font-size: 1.5rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius:50%;
-    cursor: pointer;
-    text-align: center;
-    line-height: 2.5rem;
-}
-main .container-type .briefcase{
-color: #a8a8b850;
-background-color: #070799 ;
-}
-main .container-type .praying{
-    color: #9aa498;
-    background-color: #206115;
-}
-main .container-type .utensils{
-    color: #ece4de50;
-    background-color: #d85d0b;
-}
-main .container-type .dumbbell{
-    color: #d0c8d1;
-    background-color: #af0bd8;
+    flex-direction: column;
+    gap: 0.5em;
 }
 form{
     display: flex;
-    justify-content: center;
     align-items: center;
-    
+    position: relative;
+
 }
 form i{
     font-size: 1.5rem;
@@ -98,20 +73,119 @@ form .container-input{
     color: var(--lColor);
     border-radius: 4em;
     padding-left:1em;
-    width: 30em;
+    width: 100%;
     display:flex;
     align-items: center;
     justify-content: space-between;
 }
 form .container-input input{
-    width: 80%;
     background-color: var(--bColor);
-    font-size: 0.9em;
+    font-size: 0.8em;
     font-weight: 600;
+    padding-left: 0.5em;
+    width: 20em;
+    color: var(--gColor);
 }
 form .addItemButton{
     background-color: var(--pColor);
     padding: .5em;
     border-radius: 50%;
     cursor: pointer;
+}
+main .container-type{
+    /* padding-left: 2em; */
+    gap: 0.7em;
+    position: absolute;
+    left: -1.3em;
+    z-index: -1;
+    display:flex ;
+    animation: back 2s forwards;
+}
+main .add{
+    animation: move 2s forwards;
+    left: 30em;
+}
+main .container-type i {
+    font-size: 1.3rem;
+    width: 1.8em;
+    height: 1.8em;
+    border-radius: 50%;
+    transition: 1s;
+    cursor: pointer;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    line-height: 1.8em;
+    animation:turnBack 2s forwards;
+}
+main .container-type.add i{
+    animation: turn 2s  forwards;
+}
+.briefcase{
+    color: #b5b5d2;
+    background-color: #070799 ;
+}
+.praying{
+    color: #c0e0b9;
+    background-color: #206115;
+}
+.utensils{
+    color: #d3d393;
+    background-color: #d85d0b;
+}
+.dumbbell{
+    color: #d0c8d1;
+    background-color: #af0bd8;
+}
+.container-todo{
+    width: 100%;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+.added-item{
+    display: flex;
+    align-items: center;
+    gap:0.5em;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+}
+.added-item li{
+    width: 100%;
+}
+.added-item i{
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius:50% ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@keyframes move {
+    0% { left: 15em;
+    z-index: -1; }
+    70%{
+        z-index: -1; 
+    }
+    100% {  left: 30em; 
+    z-index: 1;}
+}
+@keyframes back {
+    0% { left: 30em; 
+        z-index: -1}
+    10%{
+        z-index: -1; 
+    }
+    50%{
+        z-index: -1; 
+    }
+    100% {  left: 15em; 
+    z-index: -1;}
+}
+@keyframes turn {
+    to {transform: rotate(1turn);}
+}
+@keyframes turnBack {
+    to {transform: rotate(-1turn);}
 }
