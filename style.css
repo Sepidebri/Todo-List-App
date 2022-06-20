@@ -26,7 +26,7 @@
 body{
     font-family: 'Nunito', Arial, Helvetica, sans-serif;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
     height: 100vh;
@@ -38,6 +38,8 @@ header{
     align-items: center;
     margin-bottom: 0.8em;
     justify-content: space-between;
+    padding-top: 1em;
+    min-height: 20vh;
 }
 .header-title{
     padding-right: 2em;
@@ -55,6 +57,8 @@ main{
     align-items: center;
     flex-direction: column;
     gap: 0.5em;
+    position: absolute;
+    top: 22vh;
 }
 form{
     display: flex;
@@ -161,6 +165,12 @@ main .container-type.add i{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.completed{
+    opacity: 0.3;
+}
+.completed li{
+    text-decoration: line-through;
 }
 @keyframes move {
     0% { left: 15em;

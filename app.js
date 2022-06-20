@@ -3,6 +3,7 @@ const containerType =document.querySelector(".container-type");
 const icons = Array.from(document.querySelectorAll(".container-type i"));
 const containerTodo = document.querySelector('.container-todo');
 const input = document.querySelector('input');
+
 addItemButton.addEventListener('click', ev =>{
     containerType.classList.toggle("add");
 })
@@ -31,5 +32,13 @@ function addItem(text, type){
         containerTodo.appendChild(todoitem)
     } else {
         alert("input something")
+    }
+}
+containerTodo.addEventListener("click", optionTodolist)
+function optionTodolist(event) {
+    const iconTargeted =event.target.classList[1];
+    const parentTargeted = event.target.parentNode;
+    if(iconTargeted == "fa-clipboard-check" ){
+        parentTargeted.classList.toggle("completed");
     }
 }
