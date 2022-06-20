@@ -36,9 +36,13 @@ function addItem(text, type){
 }
 containerTodo.addEventListener("click", optionTodolist)
 function optionTodolist(event) {
-    const iconTargeted =event.target.classList[1];
+    const iconTargeted = event.target.classList[1];
     const parentTargeted = event.target.parentNode;
-    if(iconTargeted == "fa-clipboard-check" ){
+    if(iconTargeted === "fa-clipboard-check" ){
         parentTargeted.classList.toggle("completed");
+    }else if(iconTargeted === "fa-trash-can") parentTargeted.remove()
+    else if(iconTargeted === "fa-file-pen"){
+        parentTargeted.childNodes[2].toggleAttribute("contenteditable");
+        parentTargeted.classList.toggle("editting")
     }
 }

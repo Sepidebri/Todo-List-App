@@ -148,12 +148,14 @@ main .container-type.add i{
     flex-direction: column;
     gap: 0.5em;
 }
+
 .added-item{
     display: flex;
     align-items: center;
     gap:0.5em;
     padding: 0.5em 1em;
     border-radius: 0.5em;
+    transition: 0.2s;
 }
 .added-item li{
     width: 100%;
@@ -168,9 +170,22 @@ main .container-type.add i{
 }
 .completed{
     opacity: 0.3;
+    order: 2;
 }
 .completed li{
     text-decoration: line-through;
+}
+.editting li{
+    transition: 1s;
+    animation: blink 1s;
+}
+.editting i.fa-file-pen{
+    color: var(--dColor);
+    /* animation: turn 0.3s ; */
+}
+@keyframes blink{
+    to{opacity: 0;}
+    form{opacity: 1;}
 }
 @keyframes move {
     0% { left: 15em;
