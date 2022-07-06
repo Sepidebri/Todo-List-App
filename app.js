@@ -3,7 +3,6 @@ const containerType = document.querySelector(".container-type");
 const icons = Array.from(document.querySelectorAll(".container-type i"));
 const containerTodo = document.querySelector(".container-todo");
 const input = document.querySelector("input");
-let isDoneButton = null;
 //! addEventeListener
 document.addEventListener("DOMContentLoaded", getTodo);
 containerTodo.addEventListener("click", optionTodolist);
