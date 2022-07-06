@@ -66,9 +66,7 @@ function saveTodo(text, iconClass, isDone) {
   localStorage.setItem("todo", JSON.stringify(todoList));
 }
 function getTodo() {
-  const todoList = localStorage.getItem("todo")
-    ? JSON.parse(localStorage.getItem("todo"))
-    : [];
+  const todoList = getLocalStorageTodos();
   todoList.map((todo) => {
     addItem(todo.text, todo.iconClass, false);
   });
