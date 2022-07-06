@@ -73,10 +73,14 @@ function getTodo() {
 }
 
 function getLocalStorageTodos() {
-  const todoList = localStorage.getItem("todo");
-  if (todoList) {
-    return JSON.parse(localStorage.getItem("todo"));
-  } else {
-    return [];
+  try {
+    const todoList = localStorage.getItem("todo");
+    if (todoList) {
+      return JSON.parse(localStorage.getItem("todo"));
+    } else {
+      return [];
+    }
+  } catch (e) {
+    console.log(e);
   }
 }
