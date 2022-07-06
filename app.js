@@ -12,18 +12,16 @@ addItemButton.addEventListener("click", (ev) => {
 icons.map((icon) => {
   icon.addEventListener("click", (ev) => {
     containerType.classList.toggle("add");
-    const cloneIcon = icon.cloneNode();
-    addItem(input.value, cloneIcon);
+    const iconClass = [`${icon.classList[1]}`, `${icon.classList[2]}`];
+    addItem(input.value, iconClass);
     input.value = "";
   });
 });
 //! function
-function addItem(text, type) {
+function addItem(text, iconClass, isSave = true, isDone = false) {
   const todoitem = document.createElement("div");
   todoitem.classList.add("added-item");
-  const classArray = type.getAttributeNode("class").value.split(" ");
-  const colorBck = classArray[classArray.length - 1];
-  const iconClass = [`${type.classList[1]}`, `${type.classList[2]}`];
+  const colorBck = iconClass[1];
   todoitem.classList.add(colorBck);
   if (text.trim() != "") {
     todoitem.innerHTML = `
@@ -32,9 +30,14 @@ function addItem(text, type) {
             <i class="fa-solid fa-file-pen"></i>
             <i class="fa-solid fa-trash-can"></i>
         `;
+    const type = document.createElement("li");
+    todoitem.appendChild(type);
+    type.classList.add("fa-solid");
+    type.classList.add(iconClass[0]);
+    type.classList.add(iconClass[1]);
     todoitem.insertBefore(type, todoitem.childNodes[0]);
     containerTodo.appendChild(todoitem);
-    saveTodo(text, iconClass);
+    if (isSave) saveTodo(text, iconClass, isDone);
   } else {
     alert("input something");
   }
@@ -45,16 +48,18 @@ function optionTodolist(event) {
   const parentTargeted = event.target.parentNode;
   if (iconTargeted === "fa-clipboard-check") {
     parentTargeted.classList.toggle("completed");
-  } else if (iconTargeted === "fa-trash-can") parentTargeted.remove();
-  else if (iconTargeted === "fa-file-pen") {
+  } else if (iconTargeted === "fa-trash-can") {
+    parentTargeted.remove();
+  } else if (iconTargeted === "fa-file-pen") {
     parentTargeted.childNodes[2].toggleAttribute("contenteditable");
     parentTargeted.classList.toggle("editting");
   }
 }
-function saveTodo(text, iconClass) {
+function saveTodo(text, iconClass, isDone) {
   const obj = {
     text,
     iconClass,
+    isDone,
   };
   const todoList = localStorage.getItem("todo")
     ? JSON.parse(localStorage.getItem("todo"))
@@ -67,6 +72,6 @@ function getTodo() {
     ? JSON.parse(localStorage.getItem("todo"))
     : [];
   todoList.map((todo) => {
-    addItem(todo.text, todo.iconClass);
+    addItem(todo.text, todo.iconClass, false);
   });
 }
