@@ -61,9 +61,7 @@ function saveTodo(text, iconClass, isDone) {
     iconClass,
     isDone,
   };
-  const todoList = localStorage.getItem("todo")
-    ? JSON.parse(localStorage.getItem("todo"))
-    : [];
+  const todoList = getLocalStorageTodos();
   todoList.push(obj);
   localStorage.setItem("todo", JSON.stringify(todoList));
 }
@@ -74,4 +72,13 @@ function getTodo() {
   todoList.map((todo) => {
     addItem(todo.text, todo.iconClass, false);
   });
+}
+
+function getLocalStorageTodos() {
+  const todoList = localStorage.getItem("todo");
+  if (todoList) {
+    return JSON.parse(localStorage.getItem("todo"));
+  } else {
+    return [];
+  }
 }
