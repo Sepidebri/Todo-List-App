@@ -79,8 +79,6 @@ const renderItem = (props, index) => {
   deleteButton.addEventListener("click", deleteTodo);
   const editButton = document.getElementById(`${index}-edit`);
   editButton.addEventListener("click", editTodo);
-  // const deleteButton = document.getElementById(`${index}-delete`);
-  // deleteButton.addEventListener("click", deleteTodo);
 };
 
 function setIsDone(e) {
@@ -114,8 +112,6 @@ function editTodo(e) {
     setLocalStorageTodos(todoItems);
   } catch (e) {}
 }
-
-// function deleteTodo(e) {}
 
 function setLocalStorageTodos(todoLists) {
   try {
