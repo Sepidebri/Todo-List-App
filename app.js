@@ -5,7 +5,6 @@ const containerTodo = document.querySelector(".container-todo");
 const input = document.querySelector("input");
 //! addEventeListener
 document.addEventListener("DOMContentLoaded", getTodo);
-containerTodo.addEventListener("click", optionTodolist);
 addItemButton.addEventListener("click", (ev) => {
   containerType.classList.toggle("add");
 });
@@ -20,18 +19,6 @@ icons.map((icon, index) => {
 });
 
 //! function
-function optionTodolist(event) {
-  // const iconTargeted = event.target.classList[1];
-  // const parentTargeted = event.target.parentNode.parentNode;
-  // if (iconTargeted === "fa-clipboard-check") {
-  //   // parentTargeted.classList.toggle("completed");
-  // } else if (iconTargeted === "fa-trash-can") {
-  //   parentTargeted.remove();
-  // } else if (iconTargeted === "fa-file-pen") {
-  //   parentTargeted.childNodes[2].toggleAttribute("contenteditable");
-  //   parentTargeted.classList.toggle("editting");
-  // }
-}
 function saveTodo(text, iconClass, isDone) {
   const obj = {
     text,
@@ -74,9 +61,10 @@ const renderItem = (props, index) => {
   const colorBck = iconClass[1];
   todoitem.classList.add(colorBck);
   todoitem.innerHTML = `
-            <li>${text}</li>
+            <li id="${index}-text">${text}</li>
             <i id="${index}-done" class="fa-solid fa-clipboard-check"></i>
             <i  class="fa-solid fa-file-pen"></i>
+            <i id="${index}-edit" class="fa-solid fa-file-pen"></i>
             <i id="${index}-delete" class="fa-solid fa-trash-can"></i>
         `;
   const type = document.createElement("li");
@@ -90,6 +78,10 @@ const renderItem = (props, index) => {
   const deleteButton = document.getElementById(`${index}-delete`);
   doneButton.addEventListener("click", setIsDone);
   deleteButton.addEventListener("click", deleteTodo);
+  const editButton = document.getElementById(`${index}-edit`);
+  editButton.addEventListener("click", editTodo);
+  // const deleteButton = document.getElementById(`${index}-delete`);
+  // deleteButton.addEventListener("click", deleteTodo);
 };
 
 function setIsDone(e) {
@@ -111,6 +103,20 @@ function deleteTodo(e) {
     e.target.parentNode.remove();
   } catch (e) {}
 }
+
+function editTodo(e) {
+  try {
+    const parentTargeted = e.target.parentNode;
+    const id = findIdFromDashedString(e.target.id);
+    const todoItems = getLocalStorageTodos();
+    parentTargeted.childNodes[2].toggleAttribute("contenteditable");
+    parentTargeted.classList.toggle("editting");
+    todoItems[id].text = parentTargeted.childNodes[2].textContent;
+    setLocalStorageTodos(todoItems);
+  } catch (e) {}
+}
+
+// function deleteTodo(e) {}
 
 function setLocalStorageTodos(todoLists) {
   try {
