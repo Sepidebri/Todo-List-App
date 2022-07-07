@@ -11,10 +11,10 @@ addItemButton.addEventListener("click", (ev) => {
 });
 icons.map((icon, index) => {
   icon.addEventListener("click", (ev) => {
+    input.value = "";
     containerType.classList.toggle("add");
     const iconClass = [`${icon.classList[1]}`, `${icon.classList[2]}`];
     saveTodo(input.value, iconClass, false);
-    input.value = "";
     getTodo();
   });
 });
@@ -24,7 +24,7 @@ function optionTodolist(event) {
   const iconTargeted = event.target.classList[1];
   const parentTargeted = event.target.parentNode.parentNode;
   if (iconTargeted === "fa-clipboard-check") {
-    parentTargeted.classList.toggle("completed");
+    // parentTargeted.classList.toggle("completed");
   } else if (iconTargeted === "fa-trash-can") {
     parentTargeted.remove();
   } else if (iconTargeted === "fa-file-pen") {
@@ -93,6 +93,7 @@ function setIsDone(e) {
     const todoItems = getLocalStorageTodos();
     todoItems[id].isDone = !todoItems[id].isDone;
     setLocalStorageTodos(todoItems);
+    e.target.parentNode.classList.toggle("completed");
   } catch (e) {}
 }
 
