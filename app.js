@@ -74,10 +74,10 @@ const renderItem = (props, index) => {
   const colorBck = iconClass[1];
   todoitem.classList.add(colorBck);
   todoitem.innerHTML = `
-            <li>${text}</li>
+            <li id="${index}-text">${text}</li>
             <i id="${index}-done" class="fa-solid fa-clipboard-check"></i>
-            <i class="fa-solid fa-file-pen"></i>
-            <i class="fa-solid fa-trash-can"></i>
+            <i id="${index}-edit" class="fa-solid fa-file-pen"></i>
+            <i id="${index}-delete" class="fa-solid fa-trash-can"></i>
         `;
   const type = document.createElement("li");
   todoitem.appendChild(type);
@@ -88,6 +88,10 @@ const renderItem = (props, index) => {
   containerTodo.appendChild(todoitem);
   const doneButton = document.getElementById(`${index}-done`);
   doneButton.addEventListener("click", setIsDone);
+  const editButton = document.getElementById(`${index}-edit`);
+  editButton.addEventListener("click", editTodo);
+  // const deleteButton = document.getElementById(`${index}-delete`);
+  // deleteButton.addEventListener("click", deleteTodo);
 };
 
 function setIsDone(e) {
@@ -99,6 +103,20 @@ function setIsDone(e) {
     e.target.parentNode.classList.toggle("completed");
   } catch (e) {}
 }
+
+function editTodo(e) {
+  try {
+    const parentTargeted = e.target.parentNode;
+    const id = findIdFromDashedString(e.target.id);
+    const todoItems = getLocalStorageTodos();
+    parentTargeted.childNodes[2].toggleAttribute("contenteditable");
+    parentTargeted.classList.toggle("editting");
+    todoItems[id].text = parentTargeted.childNodes[2].textContent;
+    setLocalStorageTodos(todoItems);
+  } catch (e) {}
+}
+
+// function deleteTodo(e) {}
 
 function setLocalStorageTodos(todoLists) {
   try {
