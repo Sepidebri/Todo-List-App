@@ -26,7 +26,7 @@ function optionTodolist(event) {
   // if (iconTargeted === "fa-clipboard-check") {
   //   // parentTargeted.classList.toggle("completed");
   // } else if (iconTargeted === "fa-trash-can") {
-  //   parentTargeted.remove();
+  // parentTargeted.remove();
   // } else if (iconTargeted === "fa-file-pen") {
   //   parentTargeted.childNodes[2].toggleAttribute("contenteditable");
   //   parentTargeted.classList.toggle("editting");
@@ -90,8 +90,8 @@ const renderItem = (props, index) => {
   doneButton.addEventListener("click", setIsDone);
   const editButton = document.getElementById(`${index}-edit`);
   editButton.addEventListener("click", editTodo);
-  // const deleteButton = document.getElementById(`${index}-delete`);
-  // deleteButton.addEventListener("click", deleteTodo);
+  const deleteButton = document.getElementById(`${index}-delete`);
+  deleteButton.addEventListener("click", deleteTodo);
 };
 
 function setIsDone(e) {
@@ -116,7 +116,15 @@ function editTodo(e) {
   } catch (e) {}
 }
 
-// function deleteTodo(e) {}
+function deleteTodo(e) {
+  const iconTargeted = e.target.classList[1];
+  const parentTargeted = e.target.parentNode;
+  const id = findIdFromDashedString(e.target.id);
+  const todoItems = getLocalStorageTodos();
+  parentTargeted.remove();
+  todoItems.splice(id, 1);
+  setLocalStorageTodos(todoItems);
+}
 
 function setLocalStorageTodos(todoLists) {
   try {
