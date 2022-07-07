@@ -76,8 +76,8 @@ const renderItem = (props, index) => {
   todoitem.innerHTML = `
             <li>${text}</li>
             <i id="${index}-done" class="fa-solid fa-clipboard-check"></i>
-            <i class="fa-solid fa-file-pen"></i>
-            <i class="fa-solid fa-trash-can"></i>
+            <i  class="fa-solid fa-file-pen"></i>
+            <i id="${index}-delete" class="fa-solid fa-trash-can"></i>
         `;
   const type = document.createElement("li");
   todoitem.appendChild(type);
@@ -87,7 +87,9 @@ const renderItem = (props, index) => {
   todoitem.insertBefore(type, todoitem.childNodes[0]);
   containerTodo.appendChild(todoitem);
   const doneButton = document.getElementById(`${index}-done`);
+  const deleteButton = document.getElementById(`${index}-delete`);
   doneButton.addEventListener("click", setIsDone);
+  deleteButton.addEventListener("click", deleteTodo);
 };
 
 function setIsDone(e) {
@@ -97,6 +99,16 @@ function setIsDone(e) {
     todoItems[id].isDone = !todoItems[id].isDone;
     setLocalStorageTodos(todoItems);
     e.target.parentNode.classList.toggle("completed");
+  } catch (e) {}
+}
+
+function deleteTodo(e) {
+  try {
+    const id = findIdFromDashedString(e.target.id);
+    const todoItems = getLocalStorageTodos();
+    todoItems.splice(id, 1);
+    setLocalStorageTodos(todoItems);
+    e.target.parentNode.remove();
   } catch (e) {}
 }
 
