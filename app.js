@@ -116,6 +116,7 @@ function editTodo(e) {
 function setLocalStorageTodos(todoLists) {
   try {
     localStorage.setItem("todo", JSON.stringify(todoLists));
+    getTodo();
   } catch (e) {
     console.log(e);
   }
