@@ -11,26 +11,26 @@ addItemButton.addEventListener("click", (ev) => {
 });
 icons.map((icon, index) => {
   icon.addEventListener("click", (ev) => {
-    input.value = "";
     containerType.classList.toggle("add");
     const iconClass = [`${icon.classList[1]}`, `${icon.classList[2]}`];
     saveTodo(input.value, iconClass, false);
     getTodo();
+    input.value = "";
   });
 });
 
 //! function
 function optionTodolist(event) {
-  const iconTargeted = event.target.classList[1];
-  const parentTargeted = event.target.parentNode.parentNode;
-  if (iconTargeted === "fa-clipboard-check") {
-    // parentTargeted.classList.toggle("completed");
-  } else if (iconTargeted === "fa-trash-can") {
-    parentTargeted.remove();
-  } else if (iconTargeted === "fa-file-pen") {
-    parentTargeted.childNodes[2].toggleAttribute("contenteditable");
-    parentTargeted.classList.toggle("editting");
-  }
+  // const iconTargeted = event.target.classList[1];
+  // const parentTargeted = event.target.parentNode.parentNode;
+  // if (iconTargeted === "fa-clipboard-check") {
+  //   // parentTargeted.classList.toggle("completed");
+  // } else if (iconTargeted === "fa-trash-can") {
+  //   parentTargeted.remove();
+  // } else if (iconTargeted === "fa-file-pen") {
+  //   parentTargeted.childNodes[2].toggleAttribute("contenteditable");
+  //   parentTargeted.classList.toggle("editting");
+  // }
 }
 function saveTodo(text, iconClass, isDone) {
   const obj = {
