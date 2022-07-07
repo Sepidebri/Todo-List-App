@@ -63,7 +63,6 @@ const renderItem = (props, index) => {
   todoitem.innerHTML = `
             <li id="${index}-text">${text}</li>
             <i id="${index}-done" class="fa-solid fa-clipboard-check"></i>
-            <i  class="fa-solid fa-file-pen"></i>
             <i id="${index}-edit" class="fa-solid fa-file-pen"></i>
             <i id="${index}-delete" class="fa-solid fa-trash-can"></i>
         `;
