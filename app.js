@@ -65,8 +65,11 @@ function getLocalStorageTodos() {
 }
 
 const renderItem = (props, index) => {
-  const { text, iconClass } = props;
+  const { text, iconClass, isDone } = props;
   const todoitem = document.createElement("div");
+  if (isDone) {
+    todoitem.classList.toggle("completed");
+  }
   todoitem.classList.add("added-item");
   const colorBck = iconClass[1];
   todoitem.classList.add(colorBck);
