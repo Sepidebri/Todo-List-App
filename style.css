@@ -224,7 +224,7 @@ main .container-type.add i{
     20px 20px 59px #3f3f3f;
     padding: 2.5em 3em;
 }
-.container-login input, button, p{
+.container-login input, button, .text-checkbox{
     border-radius: 10px;
     background: linear-gradient(315deg, #343435, #3e3e3f);
     box-shadow:  -5px -5px 100px #2d2d2d,
@@ -233,7 +233,10 @@ main .container-type.add i{
     padding: 1em 2em;
     margin-bottom: 2em;
 }
-.container-login p{
+button{
+    cursor: pointer;
+}
+.container-login .text-checkbox{
     padding: 0.5em 4em;
     font-size: 0.7rem;
 }
