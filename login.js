@@ -5,7 +5,6 @@ const signin = document.querySelector("#sign-in");
 
 signin.addEventListener("click", () => {
   saveEntryInfo(username.value, password.value);
-  alert("Data saved!, Login");
 });
 login.addEventListener("click", () => {
   loginMainPage(username.value, password.value);
@@ -16,9 +15,14 @@ function saveEntryInfo(valueUSer, valuePass) {
     valuePass,
   };
   const userInfoList = getEntryInfoLocalList();
-  userInfoList.push(obj);
-  localStorage.setItem("userInfo", JSON.stringify(userInfoList));
-  deleteEntryInfo();
+  if (obj.valuePass && obj.valueUSer) {
+    userInfoList.push(obj);
+    localStorage.setItem("userInfo", JSON.stringify(userInfoList));
+    alert("Data saved!, Login");
+    deleteEntryInfo();
+  } else {
+    alert("fill all of input");
+  }
 }
 function getEntryInfoLocalList() {
   try {
@@ -44,22 +48,23 @@ function loginMainPage(valueUSer, valuePass) {
         valueUSer,
         valuePass,
       };
-      userInfoList.map((infoList) => {
+      userInfoList.map((infoList, index) => {
         if (
           obj.valueUSer === infoList.valueUSer &&
           obj.valuePass === infoList.valuePass
         ) {
-          alert("success");
+          showUserOnMainPage(userInfoList[index].valueUSer);
           location.href = "/index.html";
         }
       });
       if (obj.valueUSer.trim() === "" && obj.valuePass.trim() === "") {
-        console.log("fill all of the input");
+        alert("fill all of the input");
       }
-    } else {
-      console.log("you don't have any acount first sign in");
     }
   } catch (e) {
     console.log(e);
   }
+}
+function showUserOnMainPage(i) {
+  alert(`Welcome ${i}`);
 }

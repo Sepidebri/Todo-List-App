@@ -244,3 +244,8 @@ button{
     display: flex;
     justify-content: space-between;
 }
+.badge{
+    position: absolute;
+    top:1.5em;
+    right:1.5em;
+}
