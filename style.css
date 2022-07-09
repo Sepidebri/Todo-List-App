@@ -214,3 +214,30 @@ main .container-type.add i{
 @keyframes turnBack {
     to {transform: rotate(-1turn);}
 }
+.container-login{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3em;
+    border-radius: 50px;
+    background: #2d2d2d;
+    box-shadow:  -20px -20px 59px #1b1b1b,
+    20px 20px 59px #3f3f3f;
+    padding: 2.5em 3em;
+}
+.container-login input, button, p{
+    border-radius: 10px;
+    background: linear-gradient(315deg, #343435, #3e3e3f);
+    box-shadow:  -5px -5px 100px #2d2d2d,
+                5px 5px 100px #474749;
+    color:var(--lColor);
+    padding: 1em 2em;
+    margin-bottom: 2em;
+}
+.container-login p{
+    padding: 0.5em 4em;
+    font-size: 0.7rem;
+}
+.container-check-box, .container-button{
+    display: flex;
+    justify-content: space-between;
+}

@@ -19,18 +19,6 @@ icons.map((icon, index) => {
 });
 
 //! function
-function optionTodolist(event) {
-  // const iconTargeted = event.target.classList[1];
-  // const parentTargeted = event.target.parentNode.parentNode;
-  // if (iconTargeted === "fa-clipboard-check") {
-  //   // parentTargeted.classList.toggle("completed");
-  // } else if (iconTargeted === "fa-trash-can") {
-  // parentTargeted.remove();
-  // } else if (iconTargeted === "fa-file-pen") {
-  //   parentTargeted.childNodes[2].toggleAttribute("contenteditable");
-  //   parentTargeted.classList.toggle("editting");
-  // }
-}
 
 function saveTodo(text, iconClass, isDone) {
   const obj = {
@@ -45,7 +33,6 @@ function saveTodo(text, iconClass, isDone) {
 function getTodo() {
   const todoList = getLocalStorageTodos();
   containerTodo.innerHTML = "";
-  console.log(todoList);
   todoList.map((todo, index) => {
     renderItem(todo, index);
   });
@@ -74,11 +61,11 @@ const renderItem = (props, index) => {
   const colorBck = iconClass[1];
   todoitem.classList.add(colorBck);
   todoitem.innerHTML = `
-            <li id="${index}-text">${text}</li>
-            <i id="${index}-done" class="fa-solid fa-clipboard-check"></i>
-            <i id="${index}-edit" class="fa-solid fa-file-pen"></i>
-            <i id="${index}-delete" class="fa-solid fa-trash-can"></i>
-        `;
+    <li id="${index}-text">${text}</li>
+    <i id="${index}-done" class="fa-solid fa-clipboard-check"></i>
+    <i id="${index}-edit" class="fa-solid fa-file-pen"></i>
+    <i id="${index}-delete" class="fa-solid fa-trash-can"></i>
+  `;
   const type = document.createElement("li");
   todoitem.appendChild(type);
   type.classList.add("fa-solid");
