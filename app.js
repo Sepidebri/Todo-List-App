@@ -5,7 +5,6 @@ const containerTodo = document.querySelector(".container-todo");
 const input = document.querySelector("input");
 //! addEventeListener
 document.addEventListener("DOMContentLoaded", getTodo);
-containerTodo.addEventListener("click", optionTodolist);
 addItemButton.addEventListener("click", (ev) => {
   containerType.classList.toggle("add");
 });
@@ -32,6 +31,7 @@ function optionTodolist(event) {
   //   parentTargeted.classList.toggle("editting");
   // }
 }
+
 function saveTodo(text, iconClass, isDone) {
   const obj = {
     text,
@@ -87,11 +87,11 @@ const renderItem = (props, index) => {
   todoitem.insertBefore(type, todoitem.childNodes[0]);
   containerTodo.appendChild(todoitem);
   const doneButton = document.getElementById(`${index}-done`);
+  const deleteButton = document.getElementById(`${index}-delete`);
   doneButton.addEventListener("click", setIsDone);
+  deleteButton.addEventListener("click", deleteTodo);
   const editButton = document.getElementById(`${index}-edit`);
   editButton.addEventListener("click", editTodo);
-  const deleteButton = document.getElementById(`${index}-delete`);
-  deleteButton.addEventListener("click", deleteTodo);
 };
 
 function setIsDone(e) {
@@ -101,6 +101,16 @@ function setIsDone(e) {
     todoItems[id].isDone = !todoItems[id].isDone;
     setLocalStorageTodos(todoItems);
     e.target.parentNode.classList.toggle("completed");
+  } catch (e) {}
+}
+
+function deleteTodo(e) {
+  try {
+    const id = findIdFromDashedString(e.target.id);
+    const todoItems = getLocalStorageTodos();
+    todoItems.splice(id, 1);
+    setLocalStorageTodos(todoItems);
+    e.target.parentNode.remove();
   } catch (e) {}
 }
 
@@ -129,6 +139,7 @@ function deleteTodo(e) {
 function setLocalStorageTodos(todoLists) {
   try {
     localStorage.setItem("todo", JSON.stringify(todoLists));
+    getTodo();
   } catch (e) {
     console.log(e);
   }
