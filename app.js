@@ -109,7 +109,9 @@ function editTodo(e) {
     parentTargeted.childNodes[2].toggleAttribute("contenteditable");
     parentTargeted.classList.toggle("editting");
     todoItems[id].text = parentTargeted.childNodes[2].textContent;
-    setLocalStorageTodos(todoItems);
+    if (parentTargeted.childNodes[2].getAttribute("contenteditable") === null) {
+      setLocalStorageTodos(todoItems);
+    }
   } catch (e) {}
 }
 
